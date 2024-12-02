@@ -1,0 +1,70 @@
+users
+------
+id int pk
+username str unique
+password str
+active bool default=true
+nickname str null
+
+profiles
+--------
+id int pk
+biography str null
+twitter str null
+facebook str null
+instagram str null
+github str null
+linkedin str null
+user_id int fk - users.id
+
+tasks
+------
+id int pk
+title str
+priority int # comment 0=low, 1=medium, 2=high
+done bool default=false
+user_id int fk >- users.id
+
+posts
+------
+id int pk
+title str
+resume text
+content text
+published_at timestamp
+
+
+users_posts
+--------
+user_id int pk fk >- users.id
+post_id int pk fk >- posts.id
+
+roles
+-----
+id int pk
+name str unique
+
+users_roles
+--------
+user_id int pk fk >- users.id
+role_id int pk fk >- roles.id
+
+historial
+--------
+id int pk
+xxxx str
+yyyy str
+pacient_id int fk >- users.id
+doctor_id int fk >- users.id
+
+categories
+----------
+id int pk
+name str unique
+category_id int null default=0 fk >- categories.id
+
+
+
+
+
+
