@@ -25,7 +25,6 @@ class User(Base):
     profile = relationship("Profile", backref="user", uselist=False) # [<Profile 1>] => <Profile 1>
     posts = relationship("Post", secondary=users_posts)
 
-
 class Profile(Base):
     __tablename__ = "profiles"
 
@@ -46,9 +45,8 @@ class Task(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     user = relationship("User", backref="tasks")
 
-
 class Post(Base):
-    __tablaname__ = "posts"
+    __tablename__ = "posts"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String, nullable=False)
