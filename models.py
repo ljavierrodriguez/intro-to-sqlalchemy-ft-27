@@ -20,10 +20,11 @@ class User(Base):
     username = Column(String(120), nullable=False, unique=True)
     password = Column(String(120), nullable=False)
     active = Column(Boolean, default=True)
-    nickname = Column(String)
+    nickname = Column(String(120))
 
     profile = relationship("Profile", backref="user", uselist=False) # [<Profile 1>] => <Profile 1>
     posts = relationship("Post", secondary=users_posts)
+    #tasks = relationship("Task", backref="user")
 
 class Profile(Base):
     __tablename__ = "profiles"
@@ -39,7 +40,7 @@ class Task(Base):
     __tablename__ = 'tasks'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    title = Column(String, nullable=False)
+    title = Column(String(250), nullable=False)
     priority = Column(Integer, default=0, comment="0=low, 1=medium, 2=high")
     done = Column(Boolean, default=False)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
@@ -49,7 +50,7 @@ class Post(Base):
     __tablename__ = "posts"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    title = Column(String, nullable=False)
+    title = Column(String(250), nullable=False)
     resume = Column(Text, nullable=False)
     content = Column(Text, nullable=False)
     publised_at = Column(DateTime, default=datetime.now())

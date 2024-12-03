@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 sqlalchemy = "*"
+pymysql = "*"
+"psycopg2.binary" = "*"
 
 [dev-packages]
 
